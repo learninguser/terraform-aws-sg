@@ -26,7 +26,7 @@ resource "aws_security_group" "roboshop" {
 
   tags = merge(
     {
-      Name = "${var.project_name}-${var.sg_name}"
+      Name = "${var.sg_name}"
     },
     var.common_tags,
     var.sg_tags
