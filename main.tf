@@ -1,10 +1,10 @@
 resource "aws_security_group" "roboshop" {
   name        = var.sg_name
-  description = var.description
+  description = var.sg_description
   vpc_id      = var.vpc_id
 
   dynamic "ingress" {
-    for_each = var.ingress
+    for_each = var.sg_ingress_rules
     iterator = abc
 
     content {
@@ -25,10 +25,10 @@ resource "aws_security_group" "roboshop" {
   }
 
   tags = merge(
+    var.common_tags,
+    var.sg_tags,
     {
       Name = "${var.sg_name}"
-    },
-    var.common_tags,
-    var.sg_tags
+    }
   )
 }
